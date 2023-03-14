@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenClosedPrincipleGoodExam.Promotions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,13 +17,21 @@ namespace OpenClosedPrincipleBadExam
         public void Buy(string productName)
         {
             Product product = Products.FirstOrDefault(p => p.Name == productName);
-
-            if (product == null)
+            List<IPromotion> promotions = new List<IPromotion>()
             {
-                throw new ArgumentException("Product not found.");
-            }
+                new DecemberPromotion(),
+                new MondayPromotion(),
+                new StValentinePromotion(),
+                new SundayPromotion()
+            };
+
 
             decimal price = product.Price;
+
+            foreach (var promotion in promotions)
+            {
+                price += promotion.GetPrice(product);
+            }
             Console.WriteLine($"Buying {productName} for {price}");
             product.Quantity -= 1;
 

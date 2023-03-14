@@ -30,7 +30,7 @@ namespace OpenClosedPrincipleBadExam
 
             foreach (var promotion in promotions)
             {
-                price += promotion.GetPrice(product);
+                price -= promotion.GetPrice(product);
             }
             Console.WriteLine($"Buying {productName} for {price}");
             product.Quantity -= 1;

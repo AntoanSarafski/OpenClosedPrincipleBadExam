@@ -13,7 +13,7 @@ namespace OpenClosedPrincipleGoodExam.Promotions
 
             if (DateTime.Now.DayOfWeek == DayOfWeek.Sunday)
             {
-                result = product.Price * 0.5m;
+                result -= product.Price * 0.5m;
                 Console.WriteLine("50% off because it is Monday! Yaay!");
             }
             return result;

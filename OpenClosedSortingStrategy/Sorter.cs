@@ -4,6 +4,7 @@ using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
 using OpenClosedSortingStrategy.Strategies;
+using System.Reflection;
 
 namespace OpenClosedSortingStrategy
 {
@@ -14,14 +15,13 @@ namespace OpenClosedSortingStrategy
 
         public Sorter(string strategy)
         {
-            if (strategy == "Bubble")
-            {
-                sortingStrategy = new BubbleSortStrategy();
-            }
-            if (strategy == "Merge")
-            {
-                sortingStrategy = new MergeSortStrategy();
-            }
+            List<Type> types = Assembly.GetExecutingAssembly()
+                .GetTypes()
+                .Where(t => typeof(ISortingStrategy)
+                .IsAssignableFrom(t))
+                .ToList();
+
+
         }
 
         public List<T> Sort<T>(List<T> list)

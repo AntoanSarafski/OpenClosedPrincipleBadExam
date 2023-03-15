@@ -15,11 +15,13 @@ namespace OpenClosedSortingStrategy
 
         public Sorter(string strategy)
         {
-            List<Type> types = Assembly.GetExecutingAssembly()
+            Type type = Assembly.GetExecutingAssembly()
                 .GetTypes()
                 .Where(t => typeof(ISortingStrategy)
                 .IsAssignableFrom(t))
-                .ToList();
+                .First();
+
+            sortingStrategy = (ISortingStrategy)Activator.CreateInstance(type);
 
 
         }

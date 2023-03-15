@@ -4,7 +4,8 @@ using System.Text;
 
 namespace OpenClosedSortingStrategy.Strategies
 {
-    public class BubbleStrategy : ISortedStrategy
+    public interface ISortingStrategy
     {
+        List<T> Sort<T>(List<T> lsit);
     }
 }

@@ -8,24 +8,20 @@ namespace OpenClosedPrincipleBadExam
 {
     public class Store
     {
-        public Store()
+        private List<IPromotion> promotions;
+
+        public Store(List<IPromotion> promotions)
         {
             Products = new List<Product>();
+
+            this.promotions = promotions;
         }
         public List<Product> Products { get; set; }
 
         public void Buy(string productName)
         {
             Product product = Products.FirstOrDefault(p => p.Name == productName);
-            List<IPromotion> promotions = new List<IPromotion>()
-            {
-                new DecemberPromotion(),
-                new MondayPromotion(),
-                new StValentinePromotion(),
-                new SundayPromotion()
-            };
-
-
+            
             decimal price = product.Price;
 
             foreach (var promotion in promotions)

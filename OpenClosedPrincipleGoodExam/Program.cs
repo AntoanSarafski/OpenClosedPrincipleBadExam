@@ -1,5 +1,7 @@
 ﻿using OpenClosedPrincipleBadExam;
+using OpenClosedPrincipleGoodExam.Promotions;
 using System;
+using System.Collections.Generic;
 
 namespace OpenClosedPrincipleGoodExam
 {
@@ -7,7 +9,14 @@ namespace OpenClosedPrincipleGoodExam
     {
         static void Main(string[] args)
         {
-            Store store = new Store();
+            Store store = new Store(new List<IPromotion>()
+            {
+                new MondayPromotion(),
+                new SundayPromotion(),
+                new StValentinePromotion(),
+                new DecemberPromotion()
+
+            });
 
             store.Products.Add(new Product()
             {
